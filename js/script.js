@@ -23,6 +23,9 @@ function animasiBtnStart() {
 }
 // animasi whirlUot atau animasi menghilang
 function animasiIntroOut() {
+  // perintah dibawah agar tombol start tidak bisa di klik terus menerus
+  $("#start").attr("disabled", true).css({ color: "black" });
+
   $("#start").velocity("transition.whirlOut", {
     stagger: 100,
     complete: function () {
@@ -35,6 +38,8 @@ function animasiIntroOut() {
             callMenu();
             // selector mencari hal yang percis dan men triggernya dengan click pada saat function call menu sudah beres dijalankan
             $("#menu ul li a[href='whatWeDo']").trigger("click");
+            // perintah dibawah mengizinkan kembali tombol untuk bisa di klik lagi
+            $("#start").attr("disabled", false).css({ color: "black" });
           },
         }
       );
@@ -49,19 +54,30 @@ function callMenu() {
   });
 
   // function menambahkan class pada element yang di click
-  $("#menu ul li a").click(function (event) {
-    event.preventDefault(); // menstop default dari tag element yang di click
+  $("#menu ul li a")
+    .off()
+    .click(function (event) {
+      event.preventDefault(); // menstop default dari tag element yang di click
 
-    // menghapus class active yang pada element yang serupa kecuali yang di click nya
-    $(this).parent("li").addClass("active").siblings().removeClass("active");
-    // $(this).parent("li").siblings().removeClass("active"); penggunaan script yang tidak efisien
+      // menghapus class active yang pada element yang serupa kecuali yang di click nya
+      $(this).parent("li").addClass("active").siblings().removeClass("active");
+      // $(this).parent("li").siblings().removeClass("active"); penggunaan script yang tidak efisien
 
-    // menampilkan isi konten yang dinamis
-    var hrefString = $(this).attr("href");
-    $("#" + hrefString).show();
-    window[hrefString]();
-    // pendeklarasian ini akan merubah menjadi suatu function
-  });
+      if (hrefString == "backToIntro") {
+        backToIntro();
+      } else {
+        var hrefString = $(this).attr("href");
+        if (!$("#" + hrefString).is(":visible")) {
+          $(".container-content").fadeOut(1000);
+
+          setTimeout(() => {
+            $("#" + hrefString).show();
+            window[hrefString]();
+            // pendeklarasian ini akan merubah menjadi bentukan function
+          }, 1000);
+        }
+      }
+    });
 }
 
 //
@@ -69,6 +85,26 @@ function whatWeDo() {
   $("#whatWeDo img").velocity("transition.flipYIn", { duration: 1500 });
   $("#whatWeDo .title").velocity("transition.slideUpIn", { duration: 1500 });
   $("#whatWeDo div").velocity("transition.slideDownIn", { duration: 1500 });
+}
+
+function ourTeam() {
+  $(".members.top240").velocity("transition.slideUpIn", { stagger: 100 });
+  $(".members.top170").velocity("transition.slideDownIn", { stagger: 100 });
+}
+
+function backToIntro() {
+  $("#menu ul li").hide();
+  $(".container-content").hide();
+
+  $("#text").velocity(
+    { "font-size": "90px", top: "50%" },
+    {
+      duration: 1000,
+      complete: function () {
+        $("#start").velocity("transition.whirlIn");
+      },
+    }
+  );
 }
 
 $(document).ready(function () {
@@ -80,4 +116,5 @@ $(document).ready(function () {
  * complete akan dijalankan apabila effect dari velocity parentnya selesai
  * siblings mencari element yang serupa misalkan li dia akan mencari element li lainnya
  * show() merubah display yang asalnya none menjadi block
+ * off() ketika fungsi yang dipilih fungsi tsb akan off terlebih dahulu
  */
