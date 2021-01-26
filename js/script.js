@@ -33,6 +33,8 @@ function animasiIntroOut() {
           duration: 1000,
           complete: function () {
             callMenu();
+            // selector mencari hal yang percis dan men triggernya dengan click pada saat function call menu sudah beres dijalankan
+            $("#menu ul li a[href='what-we-do.html']").trigger("click");
           },
         }
       );
@@ -45,6 +47,13 @@ function callMenu() {
   $("#menu ul li").velocity("transition.slideLeftIn", {
     stagger: 200,
   });
+
+  // function menambahkan class pada element yang di click
+  $("#menu ul li a").click(function () {
+    // menghapus class active yang pada element yang serupa kecuali yang di click nya
+    $(this).parent("li").addClass("active").siblings().removeClass("active");
+    // $(this).parent("li").siblings().removeClass("active"); penggunaan script yang tidak efisien
+  });
 }
 
 $(document).ready(function () {
@@ -54,4 +63,5 @@ $(document).ready(function () {
 /**
  * stagger satuannya mili sec
  * complete akan dijalankan apabila effect dari velocity parentnya selesai
+ * siblings mencari element yang serupa misalkan li dia akan mencari element li lainnya
  */

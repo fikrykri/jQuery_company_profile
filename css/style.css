@@ -71,3 +71,11 @@ body {
   border-left: 3px solid black;
   padding-left: 5px;
 }
+
+#menu ul li.active a {
+  border-bottom: 3px solid black;
+}
+
+#menu ul li.active a:hover {
+  border-left: none;
+}
