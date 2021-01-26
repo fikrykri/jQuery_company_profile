@@ -1,3 +1,4 @@
+// animasi pada intro text
 function animasiIntro() {
   // membuat animasi slideleft in pada text utama intro
   $("#text span").velocity("transition.slideLeftIn", {
@@ -8,6 +9,7 @@ function animasiIntro() {
   });
 }
 
+// animasi pada tombol start into
 function animasiBtnStart() {
   $("#start")
     .velocity("transition.bounceUpIn")
@@ -18,6 +20,19 @@ function animasiBtnStart() {
     .mouseleave(function () {
       $(this).velocity({ width: 125 });
     });
+}
+// animasi whirlUot atau animasi menghilang
+function animasiIntroOut() {
+  $("#start").velocity("transition.whirlOut", {
+    stagger: 100,
+    complete: function () {
+      // animasi intro text costume css
+      $("#text").velocity(
+        { "font-size": "20px", top: "95%" },
+        { duration: 1000 }
+      );
+    },
+  });
 }
 
 $(document).ready(function () {
