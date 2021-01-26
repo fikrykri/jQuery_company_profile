@@ -36,8 +36,10 @@ function animasiIntroOut() {
           duration: 1000,
           complete: function () {
             callMenu();
+
             // selector mencari hal yang percis dan men triggernya dengan click pada saat function call menu sudah beres dijalankan
             $("#menu ul li a[href='whatWeDo']").trigger("click");
+
             // perintah dibawah mengizinkan kembali tombol untuk bisa di klik lagi
             $("#start").attr("disabled", false).css({ color: "black" });
           },
@@ -57,7 +59,8 @@ function callMenu() {
   $("#menu ul li a")
     .off()
     .click(function (event) {
-      event.preventDefault(); // menstop default dari tag element yang di click
+      // menstop default dari tag element yang di click
+      event.preventDefault();
 
       // menghapus class active yang pada element yang serupa kecuali yang di click nya
       $(this).parent("li").addClass("active").siblings().removeClass("active");
@@ -72,26 +75,29 @@ function callMenu() {
 
           setTimeout(() => {
             $("#" + hrefString).show();
-            window[hrefString]();
+
             // pendeklarasian ini akan merubah menjadi bentukan function
+            window[hrefString]();
           }, 1000);
         }
       }
     });
 }
 
-//
+// membuat animation untuk menampilkan halaman whatWeDo
 function whatWeDo() {
   $("#whatWeDo img").velocity("transition.flipYIn", { duration: 1500 });
   $("#whatWeDo .title").velocity("transition.slideUpIn", { duration: 1500 });
   $("#whatWeDo div").velocity("transition.slideDownIn", { duration: 1500 });
 }
 
+// membuat animation untuk menampilkan halaman ourTeam
 function ourTeam() {
   $(".members.top240").velocity("transition.slideUpIn", { stagger: 100 });
   $(".members.top170").velocity("transition.slideDownIn", { stagger: 100 });
 }
 
+// membuat animation untuk kembali ke halaman intro
 function backToIntro() {
   $("#menu ul li").hide();
   $(".container-content").hide();
