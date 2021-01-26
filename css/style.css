@@ -79,3 +79,29 @@ body {
 #menu ul li.active a:hover {
   border-left: none;
 }
+
+.container-content {
+  display: none;
+}
+
+#whatWeDo img {
+  margin: 180px 0 0 60px;
+  border: 10px solid #f1f1f1;
+  border-radius: 3px;
+  width: 400px;
+}
+
+h3.title {
+  position: absolute;
+  top: -20px;
+  left: 520px;
+  font-size: 80px;
+  text-transform: uppercase;
+}
+
+#whatWeDo div {
+  width: 650px;
+  position: absolute;
+  top: 160px;
+  left: 530px;
+}
