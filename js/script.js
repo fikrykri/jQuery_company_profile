@@ -29,9 +29,21 @@ function animasiIntroOut() {
       // animasi intro text costume css
       $("#text").velocity(
         { "font-size": "20px", top: "95%" },
-        { duration: 1000 }
+        {
+          duration: 1000,
+          complete: function () {
+            callMenu();
+          },
+        }
       );
     },
+  });
+}
+
+// animasi pada nav menu list
+function callMenu() {
+  $("#menu ul li").velocity("transition.slideLeftIn", {
+    stagger: 200,
   });
 }
 
