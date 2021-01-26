@@ -40,4 +40,34 @@ body {
   width: 125px;
   height: 40px;
   display: none;
+  cursor: pointer;
+}
+
+#menu {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+#menu ul {
+  list-style: none;
+}
+
+#menu ul li {
+  margin: 5px 0px;
+  text-align: right;
+  display: none;
+}
+
+#menu ul li a {
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+#menu ul li a:hover {
+  border-left: 3px solid black;
+  padding-left: 5px;
 }
