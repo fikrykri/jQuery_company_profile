@@ -105,3 +105,38 @@ h3.title {
   top: 160px;
   left: 530px;
 }
+
+#ourTeam {
+  margin-left: 70px;
+}
+
+#ourTeam .members {
+  float: left;
+  margin: 0px 10px;
+  background: white;
+  padding: 5px 5px 15px 5px;
+  border-radius: 3px;
+}
+
+#ourTeam .members.top240 {
+  margin-top: 250px;
+}
+
+#ourTeam .members.top170 {
+  margin-top: 170px;
+}
+
+#ourTeam .members img {
+  width: 230px;
+}
+
+#ourTeam .members h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 5px 0px 2px 0px;
+}
+
+#ourTeam .members span {
+  font-size: 12px;
+  font-style: italic;
+}
